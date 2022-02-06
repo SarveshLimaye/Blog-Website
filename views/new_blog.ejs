@@ -1,0 +1,26 @@
+<%- include("header"); -%>
+<div class="new-blog-head">
+    <form class="new-blog-form" action="/new-blog" method="post">
+        <div class="form-head">
+            <h1>Write New Blog!</h1>
+        </div>
+        
+        <div class="container form-parent">
+            <div class="form-item">
+                <label for="userName"><strong>Username:</strong></label>
+                <input id="userName" value="<%= blog.username %>" type="text" class="form-control" placeholder="Username" name="username">
+            </div>
+            <div class="form-item">
+                <label for="title"><strong>Title:</strong></label>
+                <input id="title" value="<%= blog.title %>" type="text" class="form-control" placeholder="Title" name="title">
+            </div>
+            <div class="form-item">
+                <label for="exampleFormControlTextarea1"><strong>Description:</strong></label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="desc"><%= blog.desc %></textarea>
+            </div>
+            <div class="form-item"><button type="submit" class="btn btn-primary">Save</button></div>
+        </div>
+
+    </form>
+</div>
+<%- include("footer"); -%>

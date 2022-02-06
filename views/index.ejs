@@ -1,0 +1,32 @@
+<%- include("header"); -%>
+    <div class="home">
+
+        <div id="container">
+            <div class="row head-row">
+                <div class="col-lg-8">
+                    <h1>My Blogs!!</h1>
+                </div>
+                <div class="col-lg-4">
+                    <a href="/new-blog"><button class="btn head-button">Add Post</button></a>
+                </div>
+            </div>
+            <div class="content-head">
+            <% blogs.forEach(function(blog){ %>
+                <div class="content">
+                    <h2><%= blog.title %></h2>
+                    <p><%= blog.desc %></p>
+                    <h4>By <%= blog.username %></h4>
+                    <form class="delete-form" action="/blogs/<%= blog._id %>?_method=DELETE" method="post">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-trash-alt"></i></button>
+                    </form>
+                    <form class="patch-form" action="/blogs/<%= blog._id %>?_method=PATCH" method="post">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i></button>
+                    </form>
+                </div>
+            <% }) %>
+            </div>
+
+    </div>
+
+    </div>
+<%- include("footer") -%>
