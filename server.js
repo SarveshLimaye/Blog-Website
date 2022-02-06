@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express=require("express");
 const bodyParser=require("body-parser");
 const mongoose=require("mongoose");
@@ -13,7 +14,7 @@ app.get("/",(req,res)=>{
    res.redirect("/blogs");
 })
 
-mongoose.connect("mongodb+srv://sarvesh:sarvesh2002@cluster0.anzgr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+mongoose.connect(process.env.url)
 
 const blogSchema= new mongoose.Schema({
     title:String,
@@ -24,13 +25,6 @@ const blogSchema= new mongoose.Schema({
 const Blog = mongoose.model("blogs",blogSchema);
 
 app.get("/blogs",async (req,res)=>{
-    // const blogs=[
-    //     {title:"CSI WORKSHOP",desc:"Conducting nodejs workshop",username:"shreyasp7"},
-    //     {title:"CSI WORKSHOP",desc:"Conducting nodejs workshop",username:"shreyasp7"},
-    //     {title:"CSI WORKSHOP",desc:"Conducting nodejs workshop",username:"shreyasp7"},
-    //     {title:"CSI WORKSHOP",desc:"Conducting nodejs workshop",username:"shreyasp7"},
-    //     {title:"CSI WORKSHOP",desc:"Conducting nodejs workshop",username:"shreyasp7"}
-    // ]
     const blogs=await Blog.find();
     res.render("index.ejs",{blogs:blogs});
 })
